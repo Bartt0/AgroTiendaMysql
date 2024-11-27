@@ -115,3 +115,4 @@ c:\laragon\www\Agrotienda_2\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Workspace
 c:\laragon\www\Agrotienda_2\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 c:\laragon\www\Agrotienda_2\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 c:\laragon\www\Agrotienda_2\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
+c:\laragon\www\Agrotienda_2\obj\Debug\net8.0\Agrotienda_2.sourcelink.json

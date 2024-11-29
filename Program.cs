@@ -1,42 +1,43 @@
-using Microsoft.EntityFrameworkCore; //En este estas usando el EntityFramework.NET 8.0//
-using Pomelo.EntityFrameworkCore.MySql; //Este es tu EntityFramework//
-using Agrotienda_2.data; //Este es el nombre de tu prollecto que esta en DbContext//
+using Microsoft.EntityFrameworkCore; // Entity Framework
+using Pomelo.EntityFrameworkCore.MySql; // MySQL EF Core Provider
+using Agrotienda_2.Data; // Tu DbContext
 using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Configuración de DbContext para MySQL
+builder.Services.AddDbContext<Creador_de_TablasContext>(options =>
+    options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"),
+    new MySqlServerVersion(new Version(9, 0, 0)))); // Versión MySQL 9.0.0
 
-
-// Esto es para configurar el DbContext a Mysql//
-builder.Services.AddDbContext<Creador_de_TablasContext>(Options =>
-Options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"),
-new MySqlServerVersion(new Version(9,0,0))));
-
-
-
-// Add services to the container//
+// Agregar servicios necesarios para la aplicación
+builder.Services.AddControllers();  // Añadir soporte para controladores API
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(); // Habilitar Swagger para documentación de API
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configuración de la tubería de solicitudes HTTP
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwagger(); // Habilitar Swagger solo en el entorno de desarrollo
+    app.UseSwaggerUI(); // Interfaz gráfica de Swagger
 }
 
+// Asegurarse de redirigir todas las solicitudes HTTP a HTTPS
 app.UseHttpsRedirection();
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+// Registrar las rutas de los controladores
+app.MapControllers(); 
 
+// Definir una ruta simple de ejemplo (opcional)
+app.MapGet("/", () => "¡Bienvenido a AgroTienda!");
+
+// Si necesitas una ruta adicional para el clima (como ejemplo), la puedes dejar aquí
 app.MapGet("/weatherforecast", () =>
 {
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
+    var summaries = new[] { "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching" };
+    var forecast = Enumerable.Range(1, 5).Select(index =>
         new WeatherForecast
         (
             DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
@@ -49,9 +50,10 @@ app.MapGet("/weatherforecast", () =>
 .WithName("GetWeatherForecast")
 .WithOpenApi();
 
-app.Run();
+app.Run(); // Iniciar la aplicación
 
+// Definir la estructura de WeatherForecast (ejemplo de modelo de datos)
 record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
 {
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556); // Convertir de Celsius a Fahrenheit
 }

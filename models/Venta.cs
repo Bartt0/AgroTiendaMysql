@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Agrotienda_2.models.Usuario;
+using Agrotienda_2.models;
 
 namespace Agrotienda_2.models
 {
@@ -14,8 +14,8 @@ namespace Agrotienda_2.models
         public required String Metodo_Pago {get;set;}
         public required String Direccion_Entrega {get;set;}
 
-        public int UsuarioId {get;set;}
-        public Usuario Usuario {get;set;}
+        public  required int UsuarioId {get;set;}
+        public  required Usuario Usuario {get;set;}
         
     }
 }

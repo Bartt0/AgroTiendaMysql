@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Agrotienda_2.models;
 using Microsoft.EntityFrameworkCore;
-
 namespace Agrotienda_2.data
 {
     public class Creador_de_TablasContext: DbContext
@@ -14,6 +13,20 @@ namespace Agrotienda_2.data
         {
             
         }
+       protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Venta>()
+            .HasOne<Usuario>(s => s.Usuario)
+            .WithMany(g => g.Venta)
+            .HasForeignKey(s => s.UsuarioId);
+    }
+
+
+
+
+
+
+
 
         public DbSet<Usuario> Usuario {get;set;}
         public DbSet<Venta> Venta {get;set;}
@@ -24,5 +37,8 @@ namespace Agrotienda_2.data
         public DbSet<Chat> Chat {get;set;}
         public DbSet<Carrito> Carrito {get;set;}
         public DbSet<Calificacion> Calificacion {get;set;}
+
+
+        
     }
 }

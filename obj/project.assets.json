@@ -2701,19 +2701,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\obed Gomez Guzman\\.nuget\\packages\\": {}
+    "C:\\Users\\alber\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\laragon\\www\\Agrotienda_2\\Agrotienda_2.csproj",
+      "projectUniqueName": "C:\\Users\\alber\\documents\\AgroTiendaMysql\\Agrotienda_2.csproj",
       "projectName": "Agrotienda_2",
-      "projectPath": "c:\\laragon\\www\\Agrotienda_2\\Agrotienda_2.csproj",
-      "packagesPath": "C:\\Users\\obed Gomez Guzman\\.nuget\\packages\\",
-      "outputPath": "c:\\laragon\\www\\Agrotienda_2\\obj\\",
+      "projectPath": "C:\\Users\\alber\\documents\\AgroTiendaMysql\\Agrotienda_2.csproj",
+      "packagesPath": "C:\\Users\\alber\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\alber\\documents\\AgroTiendaMysql\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\obed Gomez Guzman\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\alber\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"

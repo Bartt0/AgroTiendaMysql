@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\alber\\documents\\AgroTiendaMysql\\Agrotienda_2.csproj": {}
+    "C:\\laragon\\www\\AgroTiendaMysql\\Agrotienda_2.csproj": {}
   },
   "projects": {
-    "C:\\Users\\alber\\documents\\AgroTiendaMysql\\Agrotienda_2.csproj": {
+    "C:\\laragon\\www\\AgroTiendaMysql\\Agrotienda_2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\alber\\documents\\AgroTiendaMysql\\Agrotienda_2.csproj",
+        "projectUniqueName": "C:\\laragon\\www\\AgroTiendaMysql\\Agrotienda_2.csproj",
         "projectName": "Agrotienda_2",
-        "projectPath": "C:\\Users\\alber\\documents\\AgroTiendaMysql\\Agrotienda_2.csproj",
-        "packagesPath": "C:\\Users\\alber\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\alber\\documents\\AgroTiendaMysql\\obj\\",
+        "projectPath": "C:\\laragon\\www\\AgroTiendaMysql\\Agrotienda_2.csproj",
+        "packagesPath": "C:\\Users\\angel_3oe89rq\\.nuget\\packages\\",
+        "outputPath": "C:\\laragon\\www\\AgroTiendaMysql\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\alber\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\angel_3oe89rq\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"

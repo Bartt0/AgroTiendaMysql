@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore; // Entity Framework
 using Pomelo.EntityFrameworkCore.MySql; // MySQL EF Core Provider
-using Agrotienda_2.Data; // Tu DbContext
+using Agrotienda_2.data; // Tu DbContext
 using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);

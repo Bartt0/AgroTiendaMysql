@@ -34,11 +34,21 @@ namespace Agrotienda_2.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<int>("ProductoId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Puntuacion")
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("int");
+
                     b.HasKey("CalificacionId");
+
+                    b.HasIndex("ProductoId");
+
+                    b.HasIndex("UsuarioId");
 
                     b.ToTable("Calificacion");
                 });
@@ -54,7 +64,12 @@ namespace Agrotienda_2.Migrations
                     b.Property<DateTime>("Fecha_Creacion")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("int");
+
                     b.HasKey("CarritoId");
+
+                    b.HasIndex("UsuarioId");
 
                     b.ToTable("Carrito");
                 });
@@ -74,7 +89,12 @@ namespace Agrotienda_2.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("int");
+
                     b.HasKey("ChatId");
+
+                    b.HasIndex("UsuarioId");
 
                     b.ToTable("Chat");
                 });
@@ -90,10 +110,20 @@ namespace Agrotienda_2.Migrations
                     b.Property<int>("Cantidad")
                         .HasColumnType("int");
 
+                    b.Property<int>("CarritoId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductoId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Subtotal")
                         .HasColumnType("int");
 
                     b.HasKey("Detalle_CarritoId");
+
+                    b.HasIndex("CarritoId");
+
+                    b.HasIndex("ProductoId");
 
                     b.ToTable("Detalle_de_Carrito");
                 });
@@ -113,10 +143,20 @@ namespace Agrotienda_2.Migrations
                     b.Property<decimal>("Precio_Unitario")
                         .HasColumnType("decimal(65,30)");
 
+                    b.Property<int>("ProductoId")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("Subtotal")
                         .HasColumnType("decimal(65,30)");
 
+                    b.Property<int>("VentaId")
+                        .HasColumnType("int");
+
                     b.HasKey("Detalle_VentaId");
+
+                    b.HasIndex("ProductoId");
+
+                    b.HasIndex("VentaId");
 
                     b.ToTable("Detalle_de_Ventas");
                 });
@@ -137,7 +177,12 @@ namespace Agrotienda_2.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<int>("VentaId")
+                        .HasColumnType("int");
+
                     b.HasKey("Pasarela_PagoId");
+
+                    b.HasIndex("VentaId");
 
                     b.ToTable("Pasarela_de_Pagos");
                 });
@@ -164,7 +209,12 @@ namespace Agrotienda_2.Migrations
                     b.Property<int>("Stock")
                         .HasColumnType("int");
 
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("int");
+
                     b.HasKey("ProductoId");
+
+                    b.HasIndex("UsuarioId");
 
                     b.ToTable("Productos");
                 });
@@ -235,9 +285,160 @@ namespace Agrotienda_2.Migrations
                     b.Property<decimal>("Total")
                         .HasColumnType("decimal(65,30)");
 
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("int");
+
                     b.HasKey("VentaId");
 
+                    b.HasIndex("UsuarioId");
+
                     b.ToTable("Venta");
+                });
+
+            modelBuilder.Entity("Agrotienda_2.models.Calificacion", b =>
+                {
+                    b.HasOne("Agrotienda_2.models.Producto", "Producto")
+                        .WithMany("Calificacion")
+                        .HasForeignKey("ProductoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Agrotienda_2.models.Usuario", "Usuario")
+                        .WithMany("Calificacion")
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Producto");
+
+                    b.Navigation("Usuario");
+                });
+
+            modelBuilder.Entity("Agrotienda_2.models.Carrito", b =>
+                {
+                    b.HasOne("Agrotienda_2.models.Usuario", "Usuario")
+                        .WithMany("Carrito")
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Usuario");
+                });
+
+            modelBuilder.Entity("Agrotienda_2.models.Chat", b =>
+                {
+                    b.HasOne("Agrotienda_2.models.Usuario", "Usuario")
+                        .WithMany("Chat")
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Usuario");
+                });
+
+            modelBuilder.Entity("Agrotienda_2.models.Detalle_Carrito", b =>
+                {
+                    b.HasOne("Agrotienda_2.models.Carrito", "Carrito")
+                        .WithMany("Detalle_Carrito")
+                        .HasForeignKey("CarritoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Agrotienda_2.models.Producto", "Producto")
+                        .WithMany("Detalle_Carrito")
+                        .HasForeignKey("ProductoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Carrito");
+
+                    b.Navigation("Producto");
+                });
+
+            modelBuilder.Entity("Agrotienda_2.models.Detalle_Venta", b =>
+                {
+                    b.HasOne("Agrotienda_2.models.Producto", "Producto")
+                        .WithMany("Detalle_Venta")
+                        .HasForeignKey("ProductoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Agrotienda_2.models.Venta", "Venta")
+                        .WithMany("Detalle_Venta")
+                        .HasForeignKey("VentaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Producto");
+
+                    b.Navigation("Venta");
+                });
+
+            modelBuilder.Entity("Agrotienda_2.models.Pasarela_Pago", b =>
+                {
+                    b.HasOne("Agrotienda_2.models.Venta", "Venta")
+                        .WithMany("Pasarela_Pago")
+                        .HasForeignKey("VentaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Venta");
+                });
+
+            modelBuilder.Entity("Agrotienda_2.models.Producto", b =>
+                {
+                    b.HasOne("Agrotienda_2.models.Usuario", "Usuario")
+                        .WithMany("Producto")
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Usuario");
+                });
+
+            modelBuilder.Entity("Agrotienda_2.models.Venta", b =>
+                {
+                    b.HasOne("Agrotienda_2.models.Usuario", "Usuario")
+                        .WithMany("Venta")
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Usuario");
+                });
+
+            modelBuilder.Entity("Agrotienda_2.models.Carrito", b =>
+                {
+                    b.Navigation("Detalle_Carrito");
+                });
+
+            modelBuilder.Entity("Agrotienda_2.models.Producto", b =>
+                {
+                    b.Navigation("Calificacion");
+
+                    b.Navigation("Detalle_Carrito");
+
+                    b.Navigation("Detalle_Venta");
+                });
+
+            modelBuilder.Entity("Agrotienda_2.models.Usuario", b =>
+                {
+                    b.Navigation("Calificacion");
+
+                    b.Navigation("Carrito");
+
+                    b.Navigation("Chat");
+
+                    b.Navigation("Producto");
+
+                    b.Navigation("Venta");
+                });
+
+            modelBuilder.Entity("Agrotienda_2.models.Venta", b =>
+                {
+                    b.Navigation("Detalle_Venta");
+
+                    b.Navigation("Pasarela_Pago");
                 });
 #pragma warning restore 612, 618
         }

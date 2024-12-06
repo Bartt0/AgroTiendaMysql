@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\laragon\\www\\Agrotienda_2\\Agrotienda_2.csproj": {}
+    "C:\\laragon\\www\\Agrotienda_2\\Agrotienda_2.csproj": {}
   },
   "projects": {
-    "c:\\laragon\\www\\Agrotienda_2\\Agrotienda_2.csproj": {
+    "C:\\laragon\\www\\Agrotienda_2\\Agrotienda_2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\laragon\\www\\Agrotienda_2\\Agrotienda_2.csproj",
+        "projectUniqueName": "C:\\laragon\\www\\Agrotienda_2\\Agrotienda_2.csproj",
         "projectName": "Agrotienda_2",
-        "projectPath": "c:\\laragon\\www\\Agrotienda_2\\Agrotienda_2.csproj",
+        "projectPath": "C:\\laragon\\www\\Agrotienda_2\\Agrotienda_2.csproj",
         "packagesPath": "C:\\Users\\obed Gomez Guzman\\.nuget\\packages\\",
-        "outputPath": "c:\\laragon\\www\\Agrotienda_2\\obj\\",
+        "outputPath": "C:\\laragon\\www\\Agrotienda_2\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\obed Gomez Guzman\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -58,6 +58,20 @@
               "version": "[9.0.0-preview.1.24081.2, )"
             },
             "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
+              "version": "[9.0.0-preview.1.2408, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.0-preview.1.24081.2, )"
+            },
+            "Microsoft.EntityFrameworkCore.sqlServer": {
+              "target": "Package",
+              "version": "[9.0.0-preview.1.2408, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[9.0.0-preview.1.2408, )"
             },

@@ -24,5 +24,23 @@ namespace Agrotienda_2.data
         public DbSet<Chat> Chat {get;set;}
         public DbSet<Carrito> Carrito {get;set;}
         public DbSet<Calificacion> Calificacion {get;set;}
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        { 
+            //Relacion foreingkey de Venta y Usuario
+            modelBuilder.Entity<Venta>()
+            .HasOne<Usuario>(s => s.Usuario)
+            .WithMany(g => g.Venta)
+            .HasForeignKey(s => s.UsuarioId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+            //Relacion foreingkey de Producto y Usuario// 
+            modelBuilder.Entity<Producto>()
+            .HasOne<Usuario>(s => s.Usuario)
+            .WithMany(g => g.Producto)
+            .HasForeignKey(s => s.UsuarioId)
+            .OnDelete(DeleteBehavior.Cascade);
+        }
     }
 }

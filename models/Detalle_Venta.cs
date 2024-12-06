@@ -2,8 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Agrotienda_2.models.Venta;
-using Agrotienda_2.models.Producto;
+using Agrotienda_2.models;
 
 namespace Agrotienda_2.models
 {

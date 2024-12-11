@@ -15,59 +15,37 @@ namespace Agrotienda_2.Controllers
             _context = context;
         }
 
-        // GET: api/Chat
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Chat>>> GetChats()
         {
-            return await _context.Set<Chat>()
-                                 .Include(c => c.Usuario)
-                                 .ToListAsync();
+            return await _context.Set<Chat>().ToListAsync();
         }
 
-        // GET: api/Chat/{id}
         [HttpGet("{id}")]
         public async Task<ActionResult<Chat>> GetChat(int id)
         {
-            var chat = await _context.Set<Chat>()
-                                     .Include(c => c.Usuario)
-                                     .FirstOrDefaultAsync(c => c.ChatId == id);
-
-            if (chat == null)
-            {
-                return NotFound();
-            }
-
-            return chat;
+            var chat = await _context.Set<Chat>().FindAsync(id);
+            return chat == null ? NotFound() : Ok(chat);
         }
 
-        // POST: api/Chat
         [HttpPost]
         public async Task<ActionResult<Chat>> CreateChat(Chat chat)
         {
             if (!_context.Set<Usuario>().Any(u => u.UsuarioId == chat.UsuarioId))
-            {
-                return BadRequest("UsuarioId no válido");
-            }
+                return BadRequest("Usuario no encontrado");
 
-            _context.Set<Chat>().Add(chat);
+            _context.Add(chat);
             await _context.SaveChangesAsync();
-
             return CreatedAtAction(nameof(GetChat), new { id = chat.ChatId }, chat);
         }
 
-        // PUT: api/Chat/{id}
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateChat(int id, Chat chat)
         {
-            if (id != chat.ChatId)
-            {
-                return BadRequest("El ID del chat no coincide.");
-            }
+            if (id != chat.ChatId) return BadRequest();
 
             if (!_context.Set<Usuario>().Any(u => u.UsuarioId == chat.UsuarioId))
-            {
-                return BadRequest("UsuarioId no válido");
-            }
+                return BadRequest();
 
             _context.Entry(chat).State = EntityState.Modified;
 
@@ -77,38 +55,24 @@ namespace Agrotienda_2.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ChatExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                if (!ChatExists(id)) return NotFound();
+                throw;
             }
 
             return NoContent();
         }
 
-        // DELETE: api/Chat/{id}
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteChat(int id)
         {
             var chat = await _context.Set<Chat>().FindAsync(id);
-            if (chat == null)
-            {
-                return NotFound();
-            }
+            if (chat == null) return NotFound();
 
-            _context.Set<Chat>().Remove(chat);
+            _context.Remove(chat);
             await _context.SaveChangesAsync();
-
             return NoContent();
         }
 
-        private bool ChatExists(int id)
-        {
-            return _context.Set<Chat>().Any(e => e.ChatId == id);
-        }
+        private bool ChatExists(int id) => _context.Set<Chat>().Any(c => c.ChatId == id);
     }
 }
